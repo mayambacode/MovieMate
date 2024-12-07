@@ -22,4 +22,11 @@
         android:name="project.stn991578659.moviemate.ui.notifications.NotificationsFragment"
         android:label="@string/title_notifications"
         tools:layout="@layout/fragment_notifications" />
+
+    <fragment
+        android:id="@+id/addMovieFragment"
+        android:name="project.stn991578659.moviemate.AddMovieFragment"
+        android:label="Add Movie"
+        tools:layout="@layout/fragment_add_movie" />
+
 </navigation>
