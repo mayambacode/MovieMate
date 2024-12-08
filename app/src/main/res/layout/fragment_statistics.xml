@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <!-- Statistics Header -->
+    <TextView
+        android:id="@+id/tv_statistics_header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Movie Statistics"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:padding="12dp"
+        android:textColor="?attr/colorOnBackground" />
+
+    <!-- Total Movies -->
+    <TextView
+        android:id="@+id/tv_total_movies"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:layout_marginTop="12dp"
+        android:textColor="?attr/colorOnBackground" />
+
+    <!-- Average Rating -->
+    <TextView
+        android:id="@+id/tv_average_rating"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:layout_marginTop="12dp"
+        android:textColor="?attr/colorOnBackground" />
+
+    <!-- Genre Count -->
+    <TextView
+        android:id="@+id/tv_genre_count"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:layout_marginTop="12dp"
+        android:textColor="?attr/colorOnBackground" />
+
+    <!-- Oldest/Newest Movie -->
+    <TextView
+        android:id="@+id/tv_oldest_movie"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:layout_marginTop="12dp"
+        android:textColor="?attr/colorOnBackground" />
+
+    <TextView
+        android:id="@+id/tv_newest_movie"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:layout_marginTop="12dp"
+        android:textColor="?attr/colorOnBackground" />
+</LinearLayout>
