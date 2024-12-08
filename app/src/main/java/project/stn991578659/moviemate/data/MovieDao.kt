@@ -18,13 +18,13 @@ interface MovieDao {
     suspend fun insert(movie: Movie)
 
     @Query("SELECT * FROM movies WHERE id = :id")
-    fun getMovieById(id: Int): Movie
+    fun getMovieById(id: Int): Flow<Movie?>
 
     @Query("SELECT * FROM movies WHERE title = :title")
     fun getMovieByTitle(title: String): Movie
 
-    @Query("SELECT * FROM movies WHERE year = :year")
-    fun getMoviesByYear(year: Int): List<Movie>
+    @Query("SELECT * FROM movies WHERE releaseYear = :releaseYear")
+    fun getMoviesByYear(releaseYear: Int): List<Movie>
 
     @Query("SELECT * FROM movies WHERE genre = :genre")
     fun getMoviesByGenre(genre: String): List<Movie>
