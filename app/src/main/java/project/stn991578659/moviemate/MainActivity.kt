@@ -7,6 +7,9 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import androidx.recyclerview.widget.LinearLayoutManager
+import project.stn991578659.moviemate.adapter.MovieAdapter
+import project.stn991578659.moviemate.data.Movie
 import project.stn991578659.moviemate.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -21,6 +24,13 @@ class MainActivity : AppCompatActivity() {
 
 
 
+
+       binding.floatingAddButton.setOnClickListener {
+           val navController = findNavController(R.id.nav_host_fragment_activity_main)
+           navController.navigate(R.id.addMovieFragment)
+       }
+
+
         val navView: BottomNavigationView = binding.navView
 
         val navController = findNavController(R.id.nav_host_fragment_activity_main)
@@ -33,8 +43,6 @@ class MainActivity : AppCompatActivity() {
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
-
-
 
         }
 

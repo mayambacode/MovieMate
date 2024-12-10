@@ -1,82 +1,125 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp">
+    android:padding="16dp"
+    tools:layout_editor_absoluteX="-5dp"
+    tools:layout_editor_absoluteY="48dp">
 
-    <LinearLayout
-        android:layout_width="match_parent"
+    <!-- Movie Title -->
+    <TextView
+        android:id="@+id/tv_edit_movie_title"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="16dp">
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="48dp"
+        android:text="Movie Title"
+        android:textColor="?attr/colorOnBackground"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <!-- Movie Title -->
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Movie Title"
-            android:textSize="16sp"
-            android:textColor="?attr/colorOnBackground" />
-        <EditText
-            android:id="@+id/et_edit_movie_title"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Edit movie title"
-            android:inputType="text"
-            android:layout_marginBottom="16dp" />
+    <EditText
+        android:id="@+id/et_edit_movie_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:hint="Edit movie title"
+        android:inputType="text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_edit_movie_title" />
 
-        <!-- Genre -->
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Genre"
-            android:textSize="16sp"
-            android:textColor="?attr/colorOnBackground" />
-        <EditText
-            android:id="@+id/et_edit_genre"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Edit genre"
-            android:inputType="text"
-            android:layout_marginBottom="16dp" />
+    <!-- Genre -->
+    <TextView
+        android:id="@+id/tv_edit_genre"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="20dp"
+        android:text="Genre"
+        android:textColor="?attr/colorOnBackground"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/et_edit_movie_title" />
 
-        <!-- Release Year -->
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Release Year"
-            android:textSize="16sp"
-            android:textColor="?attr/colorOnBackground" />
-        <EditText
-            android:id="@+id/et_edit_release_year"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Edit release year"
-            android:inputType="number"
-            android:layout_marginBottom="16dp" />
+    <EditText
+        android:id="@+id/et_edit_genre"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:hint="Edit genre"
+        android:inputType="text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_edit_genre" />
 
-        <!-- Rating -->
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Rating"
-            android:textSize="16sp"
-            android:textColor="?attr/colorOnBackground" />
-        <EditText
-            android:id="@+id/et_edit_rating"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Edit rating (1-10)"
-            android:inputType="numberDecimal"
-            android:layout_marginBottom="16dp" />
+    <!-- Release Year -->
+    <TextView
+        android:id="@+id/tv_edit_release_year"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="4dp"
+        android:text="Release Year"
+        android:textColor="?attr/colorOnBackground"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/et_edit_genre" />
 
-        <!-- Save Button -->
-        <Button
-            android:id="@+id/btn_save_movie"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Save Changes"
-            android:backgroundTint="?attr/colorPrimary"
-            android:textColor="?attr/colorOnPrimary" />
-    </LinearLayout>
-</ScrollView>
+    <EditText
+        android:id="@+id/et_edit_release_year"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:hint="Edit release year"
+        android:inputType="number"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_edit_release_year" />
+
+    <!-- Rating -->
+    <TextView
+        android:id="@+id/tv_edit_rating"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="32dp"
+        android:text="Rating"
+        android:textColor="?attr/colorOnBackground"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/et_edit_release_year" />
+
+    <EditText
+        android:id="@+id/et_edit_rating"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:hint="Edit rating (1-10)"
+        android:inputType="numberDecimal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_edit_rating" />
+
+    <!-- Save Button -->
+    <Button
+        android:id="@+id/btn_save_movie"
+        android:layout_width="388dp"
+        android:layout_height="79dp"
+        android:layout_marginTop="12dp"
+        android:backgroundTint="?attr/colorPrimary"
+        android:text="Save Changes"
+        android:textColor="?attr/colorOnPrimary"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/et_edit_rating" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
