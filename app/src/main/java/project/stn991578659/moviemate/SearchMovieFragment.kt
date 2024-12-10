@@ -35,7 +35,7 @@ class SearchMovieFragment : Fragment() {
         rvSearchResults = view.findViewById(R.id.rv_search_results)
 
         // Setup RecyclerView
-        movieAdapter = MovieAdapter(filteredList)
+//        movieAdapter = MovieAdapter(filteredList)
         rvSearchResults.layoutManager = LinearLayoutManager(requireContext())
         rvSearchResults.adapter = movieAdapter
 

@@ -5,6 +5,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import project.stn991578659.moviemate.ui.home.HomeFragment
+
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
@@ -35,10 +37,7 @@ class HomeFragment : Fragment() {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-//        val textView: TextView = binding.textHome
-//        homeViewModel.text.observe(viewLifecycleOwner) {
-//            textView.text = it
-//        }
+
         return root
     }
 
@@ -55,11 +54,14 @@ class HomeFragment : Fragment() {
         data.add(Movie(1, "Inception", 2010, "Sci-Fi", 8.8))
         data.add(Movie(2, "The Hangover", 2009, "Comedy", 7.7))
 
-        val adapter = MovieAdapter(data)
+
+        val adapter = MovieAdapter(data) { id ->
+//            val action = HomeFragmentDirections.actionNavHomeToEditMovieFragment(id)
+//            findNavController().navigate(action)
+        }
         recyclerViewMovies.adapter = adapter
-
-
     }
+
 
 
     override fun onDestroyView() {

@@ -8,7 +8,8 @@ import androidx.recyclerview.widget.RecyclerView
 import project.stn991578659.moviemate.R
 import project.stn991578659.moviemate.data.Movie
 
-class MovieAdapter(private val movieList: List<Movie>) :
+class MovieAdapter(private val movieList: List<Movie>,
+                   private val OnMovieLongClickListener: (Int) -> Unit) :
     RecyclerView.Adapter<MovieAdapter.MovieViewHolder>() {
 
     class MovieViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -31,6 +32,12 @@ class MovieAdapter(private val movieList: List<Movie>) :
         holder.genreTextView.text = "Genre: ${movie.genre}"
         holder.yearTextView.text = "Year: ${movie.releaseYear}"
         holder.ratingTextView.text = "Rating: ${movie.rating}"
+
+        // Long click listener
+        holder.itemView.setOnLongClickListener {
+            OnMovieLongClickListener(movie.id)
+            true
+        }
     }
 
     override fun getItemCount(): Int = movieList.size

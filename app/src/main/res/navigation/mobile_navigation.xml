@@ -9,7 +9,8 @@
         android:id="@+id/navigation_home"
         android:name="project.stn991578659.moviemate.ui.home.HomeFragment"
         android:label="@string/title_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_dashboard"
@@ -27,6 +28,19 @@
         android:id="@+id/addMovieFragment"
         android:name="project.stn991578659.moviemate.AddMovieFragment"
         android:label="Add Movie"
-        tools:layout="@layout/fragment_add_movie" />
+        tools:layout="@layout/fragment_add_movie" >
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/editMovieFragment"
+        android:name="project.stn991578659.moviemate.EditMovieFragment"
+        android:label="Edit Movie"
+        tools:layout="@layout/fragment_edit_movie" >
+    </fragment>
+    <argument
+        android:name="id"
+        app:argType="integer"
+         />
 
 </navigation>

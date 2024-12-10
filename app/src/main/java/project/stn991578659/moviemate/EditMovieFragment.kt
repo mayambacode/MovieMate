@@ -9,7 +9,11 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.google.firebase.firestore.FirebaseFirestore
+import project.stn991578659.moviemate.data.Movie
+import project.stn991578659.moviemate.data.MovieDao
+import project.stn991578659.moviemate.data.MovieDatabase
 
 class EditMovieFragment : Fragment() {
 
@@ -19,7 +23,11 @@ class EditMovieFragment : Fragment() {
     private lateinit var etRating: EditText
     private lateinit var btnSaveMovie: Button
 
-    private var movieId: String? = null // Assuming movies are identified by an ID
+    // Retrieve arguments passed via Navigation
+
+//    private val args: EditMovieFragmentArgs by navArgs()
+
+    private lateinit var movieDao: MovieDao
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -34,74 +42,45 @@ class EditMovieFragment : Fragment() {
         etRating = view.findViewById(R.id.et_edit_rating)
         btnSaveMovie = view.findViewById(R.id.btn_save_movie)
 
-        // Get the movie ID from arguments (passed from RecyclerView or other fragments)
-        movieId = arguments?.getString("MOVIE_ID")
-
+        // Get the movie ID from arguments
+        val db = MovieDatabase.getDatabase(requireContext())
         // Load the movie data for editing
-        loadMovieData()
-
-        // Save updated movie details
-        btnSaveMovie.setOnClickListener {
-            saveUpdatedMovie()
-        }
+//        loadMovieData(args.id)
+//
+//        // Save updated movie details
+//        btnSaveMovie.setOnClickListener {
+//            saveUpdatedMovie(args.id)
+//        }
 
         return view
     }
 
-    private fun loadMovieData() {
-        // Example: Using Firebase Firestore to fetch movie data
-        val db = FirebaseFirestore.getInstance()
+    private fun loadMovieData(id: Int) {
 
-        movieId?.let {
-            db.collection("movies").document(it)
-                .get()
-                .addOnSuccessListener { document ->
-                    if (document != null) {
-                        etMovieTitle.setText(document.getString("title"))
-                        etGenre.setText(document.getString("genre"))
-                        etReleaseYear.setText(document.getLong("releaseYear")?.toString())
-                        etRating.setText(document.getDouble("rating")?.toString())
-                    } else {
-                        Toast.makeText(requireContext(), "Movie not found!", Toast.LENGTH_SHORT).show()
-                    }
-                }
-                .addOnFailureListener {
-                    Toast.makeText(requireContext(), "Error loading movie!", Toast.LENGTH_SHORT).show()
-                }
-        }
+//
+//        val movie = movieDao.getMovieById(id)
+//        etMovieTitle.setText(movie.title)
+//        etGenre.setText(movie.genre)
+//        etReleaseYear.setText(movie.releaseYear.toString())
+//        etRating.setText(movie.rating.toString())
+
     }
 
-    private fun saveUpdatedMovie() {
-        val updatedTitle = etMovieTitle.text.toString().trim()
-        val updatedGenre = etGenre.text.toString().trim()
-        val updatedReleaseYear = etReleaseYear.text.toString().toIntOrNull()
-        val updatedRating = etRating.text.toString().toDoubleOrNull()
+    private suspend fun saveUpdatedMovie(id: Int) {
+        val updatedMovie = Movie(
+            id = id,
+            title = etMovieTitle.text.toString(),
+            genre = etGenre.text.toString(),
+            releaseYear = etReleaseYear.text.toString().toInt(),
+            rating = etRating.text.toString().toDouble()
+        )
 
-        if (updatedTitle.isEmpty() || updatedGenre.isEmpty() || updatedReleaseYear == null || updatedRating == null) {
-            Toast.makeText(requireContext(), "Please fill all fields correctly!", Toast.LENGTH_SHORT).show()
-            return
-        }
 
-        // Update the movie in Firestore
-        val db = FirebaseFirestore.getInstance()
-
-        movieId?.let {
-            val movieData = hashMapOf(
-                "title" to updatedTitle,
-                "genre" to updatedGenre,
-                "releaseYear" to updatedReleaseYear,
-                "rating" to updatedRating
-            )
-
-            db.collection("movies").document(it)
-                .update(movieData as Map<String, Any>)
-                .addOnSuccessListener {
-                    Toast.makeText(requireContext(), "Movie updated successfully!", Toast.LENGTH_SHORT).show()
-                    findNavController().popBackStack() // Navigate back to the previous screen
-                }
-                .addOnFailureListener {
-                    Toast.makeText(requireContext(), "Failed to update movie!", Toast.LENGTH_SHORT).show()
-                }
-        }
+        movieDao.update(updatedMovie)
+        Toast.makeText(requireContext(), "Movie updated successfully!", Toast.LENGTH_SHORT).show()
+        findNavController().popBackStack()
     }
+
+
 }
+
