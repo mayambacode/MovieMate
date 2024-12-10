@@ -6,12 +6,20 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import project.stn991578659.moviemate.data.Movie
+import project.stn991578659.moviemate.data.MovieDatabase
 import project.stn991578659.moviemate.databinding.FragmentAddMovieBinding
 
 class AddMovieFragment  : Fragment() {
 
     private var _binding : FragmentAddMovieBinding? = null
     private  val binding get() = _binding!!
+
+
+    private lateinit var movieDatabase: MovieDatabase
 
 
     override fun onCreateView(
@@ -26,6 +34,9 @@ class AddMovieFragment  : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        // Initialize the Room database
+        movieDatabase = MovieDatabase.getDatabase(requireContext())
 
         // Handle Add Movie Button Click
         binding.btnSubmitMovie.setOnClickListener {
@@ -58,10 +69,17 @@ class AddMovieFragment  : Fragment() {
     }
 
     private fun saveMovieToDatabase(title: String, genre: String, year: Int, rating: Double) {
-        // Placeholder: Add Room database logic or Firebase logic here
-        // Example:
-        // val movie = MovieEntity(title = title, genre = genre, year = year, rating = rating)
-        // movieDao.insert(movie)
+        val newMovie = Movie(
+            title = title,
+            genre = genre,
+            releaseYear = year,
+            rating = rating
+        )
+        // Use a coroutine to perform the database operation
+        lifecycleScope.launch(Dispatchers.IO) {
+            movieDatabase.movieDao().insert(newMovie)
+        }
+
     }
 
     override fun onDestroyView() {
